@@ -90,8 +90,8 @@
         stash.setProgress(0);
     }
 
-    stash.addEventListener('page:performers', function () {
-        waitForElementByXpath("//button[text()='Batch Update Performers']", function (xpath, el) {
+    stash.addEventListener('page:studios', function () {
+        waitForElementByXpath("//button[text()='Batch Update Studios']", function (xpath, el) {
             if (!document.getElementById(btnId)) {
                 const container = el.parentElement;
 
@@ -99,30 +99,6 @@
             }
         });
     });
-
-	// Add studios page listener
-	stash.addEventListener('page:studios', function() {
-		waitForElementByXpath("//button[text()='Batch Update Studios']", function(xpath, el) {
-            if (!document.getElementById(btnId)) {
-                const container = el.parentElement;
-
-                container.appendChild(btn);
-            }
-        });
-    });
-
-	// Add mutation listener
-	stash.addEventListener('tagger:mutations', evt => {
-		const buttons = document.querySelectorAll('.StudioTagger .btn.btn-primary');
-			buttons.forEach(button => {
-				if (!document.getElementById(btnId)) {
-					const container = button.parentElement.parentElement;
-					container.appendChild(btn);
-			}
-
-		});
-
-	});
 
     stash.addEventListener('tagger:mutations:header', evt => {
         const el = getElementByXpath("//button[text()='Scrape All']");
@@ -178,28 +154,3 @@
     }
 
 })();
-
-
-
-
-// Add studios page listener
-stash.addEventListener('page:studios', function() {
-  waitForElementByXpath("//button[text()='Batch Update Studios']", function(xpath, el) {
-    const container = el.parentElement;
-    container.appendChild(btn);
-  });
-
-});
-
-// Add mutation listener
-stash.addEventListener('tagger:mutations', evt => {
-  const buttons = document.querySelectorAll('.StudioTagger .btn.btn-primary');
-  buttons.forEach(button => {
-    if (!document.getElementById(btnId)) {
-      const container = button.parentElement.parentElement;
-      container.appendChild(btn);
-    }
-
-  });
-
-});
